@@ -1,0 +1,33 @@
+type Car = record {
+  id : text;
+  model : text;
+  owner : principal;
+  name : text;
+  createdAt : nat64;
+  updatedAt : opt nat64;
+  companyName : text;
+  image : text;
+  price : text;
+  topSpeed : text;
+  cubicCapacityOfEngine : text;
+};
+type CarPayload = record {
+  model : text;
+  name : text;
+  description : text;
+  companyName : text;
+  image : text;
+  price : text;
+  topSpeed : text;
+  cubicCapacityOfEngine : text;
+};
+type _AzleResult = variant { Ok : Car; Err : text };
+type _AzleResult_1 = variant { Ok : vec Car; Err : text };
+service : () -> {
+  createCar : (CarPayload) -> (_AzleResult);
+  deleteCar : (text) -> (_AzleResult);
+  getAllCars : () -> (_AzleResult_1) query;
+  getCarById : (text) -> (_AzleResult) query;
+  getCarByName : (text) -> (_AzleResult) query;
+  updateCar : (text, CarPayload) -> (_AzleResult);
+}
